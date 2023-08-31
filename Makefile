@@ -1,11 +1,15 @@
-teste: functions.o teste.o 
-	gcc -o teste teste.o functions.o -lm 
+ALL = main
 
-functions.o: functions.c
-	gcc -c functions.c
+all: $(ALL)
 
-distclean:
-	rm -f teste *.o
+main: functions.o teste.o 
+	gcc -o $@ $^ -lm 
 
-teste.o: teste.c
-	gcc -c teste.c
+%.o: %.c
+	gcc -c $<
+
+clean:
+	rm -f *.o
+
+distclean: clean
+	rm -f $(ALL)
