@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-double raiz(double);
+#include "functions.h"
 
 int main(){
 
