@@ -5,18 +5,21 @@ Title: SEL0456 Project 1
 
 #include <stdio.h>
 #include <math.h>
+#include "pow2.h"
+#include "sqrt2.h"
+#include "div2.h"
 
-void sqrt2(double x){
-    printf("Raiz de %.2f: %.2f\n", x, sqrt(x));
-}
+// void sqrt2(double x){
+//     printf("Raiz de %.2f: %.2f\n", x, sqrt(x));
+// }
 
-void pow2(double x){
-    printf("%.2f elevado à 2: %.2f\n", x, pow(x, 2));
-}
+// void pow2(double x){
+//     printf("%.2f elevado à 2: %.2f\n", x, pow(x, 2));
+// }
 
-void div2(double x){
-    printf("%.2f dividido por 2: %.2f\n", x, x/2);
-}
+// void div2(double x){
+//     printf("%.2f dividido por 2: %.2f\n", x, x/2);
+// }
 
 int main(void){
 
