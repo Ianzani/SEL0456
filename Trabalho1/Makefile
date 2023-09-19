@@ -1,21 +1,30 @@
 TARGET = main
 CC = gcc
 LIBS = -lm
-SRCS = main.c pow2.c sqrt2.c div2.c
-OBJS = $(SRCS:.c=.o)
+CFLAGS = -Wall -I ./$(INCDIR)
+
+SRCDIR = src
+OBJDIR = obj
+INCDIR = include
+
+SRC = $(wildcard $(SRCDIR)/*.c)
+OBJ = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRC))
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS)
-	$(CC) -o $@ $^ $(LIBS) 
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS) 
 
-%.o: %.c
-	$(CC) -c $< $(LIBS)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) $(CFLAGS) -c $< $(LIBS) -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f ./obj/*
 
 distclean: clean
 	rm -f $(TARGET)
+
+run:
+	./main
 
 
