@@ -1,6 +1,11 @@
+/*
+Author: Ian Zaniolo Sirbone
+Title: SEL0456 Project 1
+*/
+
 #ifndef POW2_H
 #define POW2_H
 
-void pow2(double);
+double *pow2(double *, int);
 
 #endif

@@ -1,7 +1,21 @@
+/*
+Author: Ian Zaniolo Sirbone
+Title: SEL0456 Project 1
+*/
+
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #include "div2.h"
 
-void div2(double x){
-    printf("%.2f dividido por 2: %.2f\n", x, x/2);
+double *div2(double *x, int size){
+
+    double *v = (double *) malloc(size * sizeof(double));
+    
+    int i;
+    for (i=0; i<size; i++){
+        v[i] = x[i]/2;
+    }
+
+    return v;
 }
