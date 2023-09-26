@@ -5,30 +5,65 @@ Title: SEL0456 Project 1
 
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
-void sqrt2(double x){
-    printf("Raiz de %.2f: %.2f\n", x, sqrt(x));
+double *sqrt2(double *x, int size){
+
+    double *v = (double *) malloc(size * sizeof(double));
+    
+    int i;
+    for (i=0; i<size; i++){
+        v[i] = sqrt(x[i]);
+    }
+
+    return v;
 }
 
-void pow2(double x){
-    printf("%.2f elevado à 2: %.2f\n", x, pow(x, 2));
+double *pow2(double *x, int size){
+
+    double *v = (double *) malloc(size * sizeof(double));
+    
+    int i;
+    for (i=0; i<size; i++){
+        v[i] = pow(x[i], 2);
+    }
+
+    return v;
 }
 
-void div2(double x){
-    printf("%.2f dividido por 2: %.2f\n", x, x/2);
+double *div2(double *x, int size){
+
+    double *v = (double *) malloc(size * sizeof(double));
+    
+    int i;
+    for (i=0; i<size; i++){
+        v[i] = x[i]/2;
+    }
+
+    return v;
 }
 
 int main(void){
 
     double array[] = {2, 4, 6, 8, 10};
+    int size = sizeof(array)/sizeof(double);
+
+    double *v1, *v2, *v3;
+    v1 = div2(array, size);
+    v2 = pow2(array, size);
+    v3 = sqrt2(array, size);
 
     int i;
-    for (i=0; i<sizeof(array)/sizeof(double); i++){
-        sqrt2(array[i]);
-        pow2(array[i]);
-        div2(array[i]);
+    for (i=0; i<size; i++){
+        printf("Divisão de %.2f por 2: %.2f\n", array[i], v1[i]);
+        printf("%.2f elevado à 2: %.2f\n", array[i], v2[i]);
+        printf("Raiz de %.2f: %.2f\n", array[i], v3[i]);
         printf("\n");
     }
+
+    free(v1);
+    free(v2);
+    free(v3);
 
     return 0;
 }
