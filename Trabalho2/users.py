@@ -9,58 +9,46 @@ from random import randint
 class User:
     def __init__(self, username, password, role):
         self.username = username
-        self.__role = self.set_role(role)
+        self.__role = self.__set_role(role)
         self.__rand_number = randint(0,100)
-        self.__password_hash = self.hash_password(password)
+        self.__password_hash = self.__hash_password(password)
+
     #Getter do hash
     @property
-    def password_hash(self):
+    def password_hash(self) -> str:
         return self.__password_hash
-    #Getter do cargo
-    @property
-    def role(self):
-        return self.__role
-    #Tratamento do cargo
-    def set_role(self, role):
-        if role in ['admin', 'user', 'superadmin']:
-            return role
+    
+    #Função de alterar senha
+    def change_password(self, old_password, new_password) -> bool:
+        if self.verify_password(old_password):
+            self.__password_hash = self.__hash_password(new_password)
+            return True
         else:
-            return None
+            return False
+    
     #Função do hash com aleatoriedade
-    def hash_password(self, password):
+    def __hash_password(self, password):
         password = str(self.__rand_number)+password
         return sha256(password.encode('utf-8')).hexdigest()
+    
     #Função de verificação de senha
-    def verify_password(self, password):
-        if self.__password_hash == self.hash_password(password):
+    def verify_password(self, password) -> bool:
+        if self.__password_hash == self.__hash_password(password):
             return True
         else:
             return False
 
+    #Getter do cargo
+    @property
+    def role(self) -> str:
+        return self.__role
+    
+    #Tratamento do cargo
+    def __set_role(self, role):
+        if role in ['admin', 'user', 'superadmin']:
+            return role
+        else:
+            return None
+
     def __repr__(self):
         return f'{self.username}'
-
-
-def main():
-    #Lista de usuarios
-    users = list()
-
-    #Criacao do primeiro usuario
-    users.append(User('Ian', 'senha_forte', 'superadmin'))
-
-    #Criacao do segundo usuario
-    users.append(User('Teste', 'senha_fraca', 'user'))
-
-    #Mostrando todos os usuarios
-    for user in users:
-        print(f'Nome de Usuário: {user}\nCargo: {user.role}\nHash da senha: {user.password_hash}\n')
-    
-    #Verificando senha dos usuarios
-    for user in users:
-        if user.verify_password('senha_forte'):
-            print(f'Senha do {user} está correta')
-        else:
-            print(f'Senha do {user} está incorreta')
-
-if __name__ == '__main__':
-    main()
