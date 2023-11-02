@@ -14,6 +14,10 @@ Repositório para os projetos da disciplina SEL0456 - Técnicas em Desenvolvimen
 
   Diretório referente à entrega do Trabalho 2.
 
+- **Trabalho3**
+
+  Diretório referente à entrega do Trabalho 3.
+
 ## Funcionalidade dos Projetos
 
 ### Trabalho 1
@@ -35,3 +39,14 @@ Repositório para os projetos da disciplina SEL0456 - Técnicas em Desenvolvimen
     - ```User.change_password(old_password, new_password)```: Muda a senha do usuário caso senha atual do usuário informada esteja correta.
   
   Para visualizar o caso teste basta executar o arquivo _app.py_ com um interpretador python.
+
+### Trabalho 3
+  Este projeto conciste na aplicação do GitHub Actions, utilizando o python application para realizar testes do arquivo _main.py_. Para melhor entendimento, observar as seguintes _branches_:
+  - **project3-branch1**:
+    Nesta branch é utilizado o comando python para executar o arquivo _main.py_, o qual retorna a senha contida no arquivo _password_entry.txt_ e compara a mesma com a senha presente no arquivo _password_hash.txt_. O resultado da comparação também é retornado;
+  - **project3-branch2**:
+    Nesta branch é utilizado o pytest para o teste do arquivo _main.py_. Para isso, é realizado um teste comparando a senha presente no arquivo _password_entry.txt_ com a senha do arquivo _password_hash.txt_, por meio da função ```verify_password()```.
+    
+  As funções presentes no arquivo function são:
+  - ```hash_password()```: responsável por criptografar a senha utilizando sha256;
+  - ```verify_password()```: responśavel por comparar as senhas, retornando _True_ ou _False_.
